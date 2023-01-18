@@ -1,0 +1,70 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+.login_container,
+.register_container {
+    background-image: url("/img/login_bg.jpg");
+    background-size: cover;
+    height: 100%;
+}
+.profile_container {
+    background-image: url("/img/profile_bg.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+}
+.card,
+button {
+    border-radius: 3px !important;
+}
+label {
+    margin-bottom: 5px;
+}
+input {
+    background-color: #fff !important;
+    border: 1.5px solid #000000 !important;
+}
+::placeholder {
+    color: rgb(214, 214, 214) !important;
+    padding-top: 20px;
+}
+
+.profile_content_1 .bio,
+.profile_content_2 h6 {
+    color: #979797;
+}
+
+.profile_content_2 h6,
+.profile_content_2 p {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.profile_content_2 p {
+    color: #c54592;
+}
+
+.profile_container .bio,
+.profile_container .phone,
+.profile_container .email,
+.album_content p {
+    font-size: 12px;
+}
+
+.profile_picture {
+    flex: 1 1 0;
+}
+
+.profile_content_1 {
+    flex: 3 2 0;
+}
+
+.profile_content_2 {
+    flex: 1 1 0;
+}
