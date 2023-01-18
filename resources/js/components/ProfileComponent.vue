@@ -90,9 +90,20 @@
                             >
                                 {{ e.description }}
                             </p>
-                            <p class="text-end px-4" style="color: #979797">
-                                {{ e.date }}
-                            </p>
+                            <div
+                                class="d-flex justify-content-between px-4"
+                                style="color: #979797"
+                            >
+                                <div>
+                                    <img
+                                        v-if="e.featured === 1"
+                                        src="/img/red-heart-icon.svg"
+                                        alt="Featured"
+                                        style="width: 20px; opacity: 0.7"
+                                    />
+                                </div>
+                                <p>{{ e.date }}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

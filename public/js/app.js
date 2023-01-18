@@ -5097,7 +5097,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       errors: "",
       invalid_credentials_error: "",
-      AuthStr: "Bearer " + this.$store.state.token
+      AuthStr: "Bearer " + this.$store.state.token,
+      passwordText: "password",
+      show: false,
+      hide: true
     };
   },
   mounted: function mounted() {
@@ -5149,6 +5152,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    passwordType: function passwordType(passwordText) {
+      if (passwordText == "password") {
+        this.passwordText = "text";
+        this.show = true;
+        this.hide = false;
+      } else {
+        this.passwordText = "password";
+        this.hide = true;
+        this.show = false;
+      }
     }
   }
 });
@@ -5494,7 +5508,11 @@ var render = function render() {
     staticClass: "col-12 mb-2"
   }, [_c("div", {
     staticClass: "form-group"
-  }, [_c("label", [_vm._v("Password")]), _vm._v(" "), _c("input", {
+  }, [_c("label", [_vm._v("Password")]), _vm._v(" "), _c("div", {
+    staticStyle: {
+      position: "relative"
+    }
+  }, [_vm.passwordText === "checkbox" ? _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -5503,8 +5521,61 @@ var render = function render() {
     }],
     staticClass: "form-control",
     attrs: {
-      type: "password",
-      placeholder: "**************"
+      placeholder: "**************",
+      type: "checkbox"
+    },
+    domProps: {
+      checked: Array.isArray(_vm.user.password) ? _vm._i(_vm.user.password, null) > -1 : _vm.user.password
+    },
+    on: {
+      change: function change($event) {
+        var $$a = _vm.user.password,
+          $$el = $event.target,
+          $$c = $$el.checked ? true : false;
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$el.checked) {
+            $$i < 0 && _vm.$set(_vm.user, "password", $$a.concat([$$v]));
+          } else {
+            $$i > -1 && _vm.$set(_vm.user, "password", $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
+          }
+        } else {
+          _vm.$set(_vm.user, "password", $$c);
+        }
+      }
+    }
+  }) : _vm.passwordText === "radio" ? _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.user.password,
+      expression: "user.password"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      placeholder: "**************",
+      type: "radio"
+    },
+    domProps: {
+      checked: _vm._q(_vm.user.password, null)
+    },
+    on: {
+      change: function change($event) {
+        return _vm.$set(_vm.user, "password", null);
+      }
+    }
+  }) : _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.user.password,
+      expression: "user.password"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      placeholder: "**************",
+      type: _vm.passwordText
     },
     domProps: {
       value: _vm.user.password
@@ -5515,7 +5586,43 @@ var render = function render() {
         _vm.$set(_vm.user, "password", $event.target.value);
       }
     }
-  }), _vm._v(" "), _vm.errors ? _c("div", _vm._l(_vm.errors.password, function (e, ikey) {
+  }), _vm._v(" "), _c("div", {
+    staticStyle: {
+      position: "absolute",
+      top: "6px",
+      right: "10px"
+    }
+  }, [_vm.show ? _c("a", {
+    attrs: {
+      id: "show",
+      href: "javascript::void(0)"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.passwordType(_vm.passwordText);
+      }
+    }
+  }, [_c("img", {
+    attrs: {
+      src: "/img/eye.svg",
+      alt: "HIde"
+    }
+  })]) : _vm._e(), _vm._v(" "), _vm.hide ? _c("a", {
+    attrs: {
+      id: "hide",
+      href: "javascript::void(0)"
+    },
+    on: {
+      click: function click($event) {
+        return _vm.passwordType(_vm.passwordText);
+      }
+    }
+  }, [_c("img", {
+    attrs: {
+      src: "/img/eye-slash.svg",
+      alt: "HIde"
+    }
+  })]) : _vm._e()])]), _vm._v(" "), _vm.errors ? _c("div", _vm._l(_vm.errors.password, function (e, ikey) {
     return _vm.errors.password.length > 0 ? _c("div", {
       key: ikey
     }, [_c("span", {
@@ -5682,12 +5789,21 @@ var render = function render() {
       staticStyle: {
         "text-align": "justify"
       }
-    }, [_vm._v("\n                            " + _vm._s(e.description) + "\n                        ")]), _vm._v(" "), _c("p", {
-      staticClass: "text-end px-4",
+    }, [_vm._v("\n                            " + _vm._s(e.description) + "\n                        ")]), _vm._v(" "), _c("div", {
+      staticClass: "d-flex justify-content-between px-4",
       staticStyle: {
         color: "#979797"
       }
-    }, [_vm._v("\n                            " + _vm._s(e.date) + "\n                        ")])])])]);
+    }, [_c("div", [e.featured === 1 ? _c("img", {
+      staticStyle: {
+        width: "20px",
+        opacity: "0.7"
+      },
+      attrs: {
+        src: "/img/red-heart-icon.svg",
+        alt: "Featured"
+      }
+    }) : _vm._e()]), _vm._v(" "), _c("p", [_vm._v(_vm._s(e.date))])])])])]);
   }), 0)])]);
 };
 var staticRenderFns = [];

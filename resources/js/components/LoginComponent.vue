@@ -54,12 +54,44 @@
                             <div class="col-12 mb-2">
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input
-                                        type="password"
-                                        class="form-control"
-                                        placeholder="**************"
-                                        v-model="user.password"
-                                    />
+                                    <div style="position: relative">
+                                        <input
+                                            :type="passwordText"
+                                            class="form-control"
+                                            placeholder="**************"
+                                            v-model="user.password"
+                                        />
+                                        <div
+                                            style="
+                                                position: absolute;
+                                                top: 6px;
+                                                right: 10px;
+                                            "
+                                        >
+                                            <a
+                                                id="show"
+                                                href="javascript::void(0)"
+                                                @click="
+                                                    passwordType(passwordText)
+                                                "
+                                                v-if="show"
+                                                ><img
+                                                    src="/img/eye.svg"
+                                                    alt="HIde"
+                                            /></a>
+                                            <a
+                                                id="hide"
+                                                href="javascript::void(0)"
+                                                @click="
+                                                    passwordType(passwordText)
+                                                "
+                                                v-if="hide"
+                                                ><img
+                                                    src="/img/eye-slash.svg"
+                                                    alt="HIde"
+                                            /></a>
+                                        </div>
+                                    </div>
                                     <div v-if="errors">
                                         <div
                                             v-if="errors.password.length > 0"
@@ -109,6 +141,9 @@ export default {
             errors: "",
             invalid_credentials_error: "",
             AuthStr: "Bearer " + this.$store.state.token,
+            passwordText: "password",
+            show: false,
+            hide: true,
         };
     },
     mounted() {
@@ -153,6 +188,17 @@ export default {
                         this.errors = error.response.data.errors;
                     }
                 });
+        },
+        passwordType(passwordText) {
+            if (passwordText == "password") {
+                this.passwordText = "text";
+                this.show = true;
+                this.hide = false;
+            } else {
+                this.passwordText = "password";
+                this.hide = true;
+                this.show = false;
+            }
         },
     },
 };
