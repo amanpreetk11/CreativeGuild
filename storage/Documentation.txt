@@ -1,0 +1,45 @@
+Laravel VueJS Application
+
+The project is setup in XAMPP environment with database in MySql, PHPMyadmin. It used Laravel framework for RESTful API, Vue (Available within Laravel) is used for frontend.
+
+*******************************
+
+      Technical Details:
+
+*******************************
+
+Laravel version: "^8.54"
+PHP version: "^7.3|^8.0"
+Vue version: "^2.6.12"
+
+For Authentication, JWT token based extrenal package 'tymon/jwt-auth' is used.
+
+Before starting the project, the requirements were studied and tasks were prioritized, created the necessary environment, studied the landscapes.json file and created DB schema.
+
+1. First, make sure composer and npm are installed.
+2. Install XAMPP. Within htdocs folder, create a laravel project with Vue UI scaffolding, copy the env-example file to create .env file. According to the provided file landscapes.json, create migrations for users & albums.
+3. Install JWT package & follow the steps for necessary changes to be made within the project.
+4. Create Albums model & modify User model to support JWT auth.
+5. Create UserController which will contain all the necessary api functions for the tasks to be performed like login, register, get authenticated user, logout etc.
+6. Create a JWT auth middleware for authenticated routes like profile,logout,checkToken.
+7. Write routes in api.php with routes after login under JWT based middleware.
+8. Run php artisan config:clear to reflect changes in .env file. 
+9. For Vue frontend, install vue router,vue axios and vuex dependencies.
+10. Create/modify a view in laravel to create SPA and include that view in web.php as default view.
+11. Modify app.js file & initialize vue app.
+12. Create App.vue with router-view.
+13. Create routes.js, store,js under resources/js. Define the routes within routes file & write code for storing the token returned from laravel API.
+14. Create components for Login,Register,Profile & use axios for sending requests to laravel API.
+
+For running the application, use both commands:
+
+php artisan serve
+npm run watch
+
+The application will be available on http://127.0.0.1:8000
+
+The easiest part was coding the logics, solving the errors/bugs & making the application work. Not difficult but most time consuming part was creating the templates in frontend.
+I prefer using JWT auth based token which is stored in localStorage in frontend because you do not need to store session data & it saves server resources. It has some expiry present in itself whereas sessions need to be expired. It is stateless which is also one of its advantages.
+
+
+
