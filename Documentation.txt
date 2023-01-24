@@ -41,5 +41,19 @@ The application will be available on http://127.0.0.1:8000
 The easiest part was coding the logics, solving the errors/bugs & making the application work. Not difficult but most time consuming part was creating the templates in frontend.
 I prefer using JWT auth based token which is stored in localStorage in frontend because you do not need to store session data & it saves server resources. It has some expiry present in itself whereas sessions need to be expired. It is stateless which is also one of its advantages.
 
+Installation:
+
+1. Clone the respository - https://github.com/amanpreetk11/CreativeGuild.git
+2. Copy .env.example file to create .env file & update the database configuration.
+3. Run composer install.
+4. Run php artisan key:generate to create application key.
+5. Set JWT secret key using - php artisan jwt:secret.
+6. Run php artisan config:clear.
+7. Run php artisan migrate.
+8. Run npm install.
+9. Run application using:
+      php artisan serve
+      npm run watch
+
 
 
