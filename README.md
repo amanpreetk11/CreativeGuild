@@ -32,7 +32,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 7. Run php artisan migrate.
 8. Run npm install.
 9. Run application using:
-   php artisan serve
+   php artisan serve &
    npm run watch
 
 ## Learning Laravel
